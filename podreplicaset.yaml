@@ -7,7 +7,7 @@ metadata:
     app: ui
     tier: frontend
 spec:
-  replicas: 4
+  replicas: 5
   selector:  # Using the selector we tell our replicaset which pods to manage
     matchLabels:
       tier: frontend
