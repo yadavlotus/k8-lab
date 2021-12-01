@@ -1,13 +1,21 @@
-
-kind: Service      # Create new service
-apiVersion: v1     
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: nginx-service # Name of the service (DNS - RFC 2929)
+  name: spring-music-deployment
 spec:
   selector:
-    app: nginx    # Run on any pod with label - app:myapp
-  ports:          # Map incoming port to target port
-  - name: tcp-port    # Setting multiple ports listen 
-    protocol: TCP
-    port: 80
-    targetPort: 8080
+    matchLabels:
+      app: springmusic
+  replicas: 2
+  template: 
+    metadata:
+      labels:
+        app: springmusic
+    spec:
+      containers:
+      - name: springmusic
+        image: yanivomc/spring-music:latest
+        ports:
+        - containerPort: 80
+
+
